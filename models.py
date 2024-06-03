@@ -1,7 +1,6 @@
 from app import db
 
-class Transaction(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    type = db.Column(db.Integer, nullable=False)
-    amount = db.Column(db.Double, nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # primary keys are required by SQLAlchemy
+    name = db.Column(db.String(50), nullable=False)
+    age = db.Column(db.Integer, nullable=False)
