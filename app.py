@@ -1,23 +1,25 @@
-from flask import Flask, jsonify, redirect
-from dotenv import load_dotenv
 import os
-from flask_sqlalchemy import SQLAlchemy
-    
-def init_blueprints():
-    from blueprints import main as main_blueprint
-    app.register_blueprint(main_blueprint.main)
-    
+from dotenv import load_dotenv
+from flask import Flask
+from database.database import db
+
 def create_app():
     load_dotenv()
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-
+    db. init_app(app)
+    
+    # import blueprints
+    from routes import main as mr
+    app.register_blueprint(mr.main)
     return app
 
-app = create_app()
-db = SQLAlchemy(app)
-    
-init_blueprints()
+def setup_database(flask_app):
+    with flask_app.app_context():
+        db.create_all()
+        
+app = create_app();
+setup_database(app)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=105, debug=True)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
