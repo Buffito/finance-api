@@ -19,10 +19,14 @@ def register_blueprints(app):
     from routes import main as main_route
     from routes import transaction as transaction_route
     from routes import transaction_type as transaction_type_route
+    from routes import user as user_route
+    from routes import auth as auth_route
     
     app.register_blueprint(main_route.main)
     app.register_blueprint(transaction_route.transaction)
     app.register_blueprint(transaction_type_route.transaction_type)
+    app.register_blueprint(user_route.user)
+    app.register_blueprint(auth_route.auth)
     
 def setup_database(flask_app):
     with flask_app.app_context():
