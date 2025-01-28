@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from werkzeug.security import check_password_hash
-from database.models import User
+from app.models import User
 
 auth = Blueprint('auth', __name__)
 

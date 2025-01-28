@@ -1,5 +1,5 @@
 # TODO List 
-# Date: 27/1/2025
+# Date: 28/1/2025
 
 ## General
 - [x] Add a TODO.md file
@@ -8,12 +8,16 @@
 - [ ] Add authentication (JWT)
 - [x] Add user model and routes
 - [ ] Secure API endpoints
-- [ ] Remove not implemented endpoints for cleaner, more readable code (?)
-- [ ] Create schema.py to store schemas and remove them from routes
+- [x] Remove not implemented endpoints for cleaner, more readable code 
 - [ ] Should make transaction types static since more won't be added
   - [ ] Add initial transaction types to the database
-- [ ] Change transaction types to category (ex. "Income", "Expense")
-- [ ] Restructure project to comply with Flask best practices
+- [X] Restructure project to comply with Flask best practices
+ - [x] Have separate directories for routes, models, schemas, and services
+ - [x] Move schemas to a separate schemas.py file
+ - [x] Create a config.py file for configuration settings
+ - [x] Use a run.py file as the entry point for the application and remove app.py
+ - [x] Remove business logic and CRUD operations from route files
+  - [X] Place above into service files
 
 ## Routes
 - [x] Main route
@@ -29,7 +33,7 @@
   - [x] Get all transaction types and create transaction type implemented - others not needed
   - [x] Implement all endpoints fully
   - [x] Added schema for data validation
-  - [ ] Delete route
+  - [x] Delete routes
 - [ ] User routes
   - [x] Write basic endpoints
   - [x] Added schema for data validation
@@ -44,5 +48,6 @@
   - [x] Main route
   - [ ] Transaction routes
   - [x] Transaction type routes (will be deleted)
+    - [x] Deleted
   - [ ] Authentication routes
   - [ ] User routes

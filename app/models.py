@@ -1,7 +1,7 @@
-from .database import db
 from dataclasses import dataclass
 from datetime import datetime
 from werkzeug.security import generate_password_hash
+from app import db
 from sqlalchemy.orm import relationship
 
 @dataclass
