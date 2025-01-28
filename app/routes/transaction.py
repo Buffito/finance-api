@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.services.transaction_service import TransactionService
+from app.services import TransactionService
 
 transaction = Blueprint('transaction', __name__)
 

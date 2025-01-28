@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.services.transaction_service import UserService
+from app.services import UserService
 
 user = Blueprint('user', __name__)
 
