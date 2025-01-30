@@ -15,9 +15,11 @@ def create_app():
     from app.routes.transaction import transaction
     from app.routes.user import user
     from app.routes.auth import auth
+    from app.routes.transactiontypes import transaction_type
 
     app.register_blueprint(transaction)
     app.register_blueprint(user)
     app.register_blueprint(auth)
-
+    app.register_blueprint(transaction_type)
+    
     return app

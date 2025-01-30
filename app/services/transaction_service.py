@@ -1,4 +1,4 @@
-from app.models import Transaction
+from app.models import Transaction, TransactionType
 from app import db
 from app.schemas import TransactionSchema
 from marshmallow import ValidationError
@@ -9,19 +9,22 @@ class TransactionService:
     @staticmethod
     def get_all():
         transactions = Transaction.query.all()
-        transactions_list = TransactionSchema(many=True).dump(transactions)
-        return transactions_list
+        return TransactionSchema(many=True).dump(transactions)
 
     @staticmethod
-    def create_transaction(transaction):
+    def create_transaction(data):
         schema = TransactionSchema()
         try:
-            validated_data = schema.load(transaction)
+            validated_data = schema.load(data)
         except ValidationError as err:
             return jsonify(err.messages), 400
 
+        transaction_type = TransactionType.query.get(validated_data['transaction_type']['id'])
+        if not transaction_type:
+            return jsonify({"error": "Invalid transaction type ID"}), 400
+
         transaction = Transaction(
-            type_id=validated_data['transaction_type']['id'], 
+            type_id=transaction_type.id, 
             amount=validated_data['amount'],
             at_date=validated_data.get('at_date', datetime.now())
         )

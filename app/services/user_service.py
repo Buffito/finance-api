@@ -25,3 +25,9 @@ class UserService:
             return jsonify({"error": str(e)}), 400
         
         return jsonify({"message": "User created successfully!"}), 200
+    
+    # For testing purposes
+    @staticmethod
+    def get_all():
+        users = User.query.all()
+        return UserSchema(many=True).dump(users)

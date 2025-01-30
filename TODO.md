@@ -9,8 +9,8 @@
 - [x] Add user model and routes
 - [ ] Secure API endpoints
 - [x] Remove not implemented endpoints for cleaner, more readable code 
-- [ ] Should make transaction types static since more won't be added
-  - [ ] Add initial transaction types to the database
+- [x] Should make transaction types static since more won't be added
+  - [x] Add initial transaction types to the database
 - [X] Restructure project to comply with Flask best practices
  - [x] Have separate directories for routes, models, schemas, and services
  - [x] Move schemas to a separate schemas.py file
@@ -46,8 +46,8 @@
 ## Testing
 - [ ] Test the API with Postman
   - [x] Main route
-  - [ ] Transaction routes
+  - [x] Transaction routes
   - [x] Transaction type routes (will be deleted)
     - [x] Deleted
   - [ ] Authentication routes
-  - [ ] User routes
+  - [x] User routes

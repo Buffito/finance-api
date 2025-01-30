@@ -11,5 +11,4 @@ def get_transactions():
 @transaction.route('/transactions', methods=['POST'])
 def create_transaction():
     data = request.get_json()
-    result = TransactionService.create_transaction(data)
-    return result
+    return TransactionService.create_transaction(data)
