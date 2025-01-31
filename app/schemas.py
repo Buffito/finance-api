@@ -9,17 +9,18 @@ class UserSchema(Schema):
         ordered = True
 
 class TransactionTypeSchema(Schema):
-    id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
-    
+    id = fields.Int(required=True)
+    name = fields.Str()
+
     class Meta:
         ordered = True
 
 class TransactionSchema(Schema):
     id = fields.Int(dump_only=True)
-    transaction_type = fields.Nested(TransactionTypeSchema, dump_only=True)
+    transaction_type = fields.Nested(TransactionTypeSchema, required=True)
     amount = fields.Float(required=True)
     at_date = fields.DateTime(dump_only=True)
-    
+    user_id = fields.Int(required=True)
+
     class Meta:
         ordered = True

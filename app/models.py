@@ -27,22 +27,22 @@ class Transaction(db.Model):
     type_id: int
     amount: float
     at_date: datetime
-    #user_id: int
+    user_id: int
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     type_id = db.Column(db.Integer, db.ForeignKey('transaction_types.id'), nullable=False)
     amount = db.Column(db.Numeric, nullable=False)
     at_date = db.Column(db.Date, nullable=False, default=datetime.now())
-    #user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     transaction_type = relationship('TransactionType', back_populates='transactions')
+    user = db.relationship('User', back_populates='transactions')
     
-    def __init__(self, type_id, amount, at_date):
-    #def __init__(self, type_id, amount, at_date, user_id):
+    def __init__(self, type_id, amount, at_date, user_id):
         self.type_id = type_id
         self.amount = amount
         self.at_date = at_date
-        #self.user_id = user_id
+        self.user_id = user_id
 
 @dataclass
 class User(db.Model):
@@ -56,7 +56,7 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
-    #transactions = relationship('Transaction', back_populates='user')
+    transactions = relationship('Transaction', back_populates='user')
     
     def __init__(self, username, password):
         self.username = username
