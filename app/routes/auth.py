@@ -1,8 +1,9 @@
 from flask import Blueprint, request, jsonify
 from werkzeug.security import check_password_hash
-from flask_jwt_extended import create_access_token, jwt_required, JWTManager
-from app.models import User
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt, JWTManager
+from app.models import User,RevokedToken
 from datetime import timedelta
+from app import db
 
 auth = Blueprint('auth', __name__)
 
@@ -20,5 +21,8 @@ def login():
 @auth.route('/logout', methods=['POST'])
 @jwt_required()
 def logout():
-    # Invalidate the token here
+    jti = get_jwt()['jti']
+    revoked_token = RevokedToken(jti=jti)
+    db.session.add(revoked_token)
+    db.session.commit()
     return jsonify({"message": "Logout successful"}), 200

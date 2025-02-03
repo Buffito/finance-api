@@ -61,3 +61,8 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self.password = generate_password_hash(password)
+        
+class RevokedToken(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    jti = db.Column(db.String(120), nullable=False, unique=True)
+    created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())

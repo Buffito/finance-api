@@ -1,13 +1,13 @@
 # TODO List 
-# Date: 28/1/2025
+# Date: 3/2/2025
 
 ## General
 - [x] Add a TODO.md file
 - [x] Refactor the $h!+ out of the existing code
 - [x] Create specific routes
-- [ ] Add authentication (JWT)
+- [x] Add authentication (JWT)
 - [x] Add user model and routes
-- [ ] Secure API endpoints
+- [x] Secure API endpoints
 - [x] Remove not implemented endpoints for cleaner, more readable code 
 - [x] Should make transaction types static since more won't be added
   - [x] Add initial transaction types to the database
@@ -18,30 +18,31 @@
  - [x] Use a run.py file as the entry point for the application and remove app.py
  - [x] Remove business logic and CRUD operations from route files
   - [X] Place above into service files
+- [X] Add database model to insert revoked JWT tokens so that they cannot be used for subsequent requests
 
 ## Routes
 - [x] Main route
   - [x] Add a simple main route
-- [ ] Transaction routes
+- [x] Transaction routes
   - [x] Write basic endpoints
   - [x] Get all transaction types and create transaction type implemented - others not needed
   - [x] Implement all endpoints fully
   - [x] Added schema for data validation
-  - [ ] Add user related endpoints - modify existing ones
+  - [x] Add user related endpoints - modify existing ones
 - [x] Transaction type routes
   - [x] Write basic endpoints
   - [x] Get all transaction types and create transaction type implemented - others not needed
   - [x] Implement all endpoints fully
   - [x] Added schema for data validation
   - [x] Delete routes
-- [ ] User routes
+- [x] User routes
   - [x] Write basic endpoints
   - [x] Added schema for data validation
   - [x] Implement create user - others not needed for now
-- [ ] Authentication routes
+- [x] Authentication routes
   - [x] Added login endpoint
-  - [ ] Implement login endpoint fully and correctly
-  - [ ] Implement logout endpoint fully and correctly
+  - [x] Implement login endpoint fully and correctly
+  - [x] Implement logout endpoint fully and correctly
 
 ## Testing
 - [ ] Test the API with Postman
