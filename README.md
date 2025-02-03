@@ -75,29 +75,6 @@ This is a Flask-based API for managing transactions. The API supports user authe
 
 2. Use an API client like Postman to interact with the API.
 
-## API Endpoints
-
-### Authentication
-
-- **POST /login**: Authenticate a user and receive a JWT token.
-    - Request body: `{ "username": "user1", "password": "password123" }`
-    - Response: `{ "access_token": "your.jwt.token.here" }`
-
-- **POST /logout**: Invalidate the current JWT token.
-    - Headers: `Authorization: Bearer your.jwt.token.here`
-    - Response: `{ "message": "Logout successful" }`
-
-### Transactions
-
-- **GET /transactions/user/<user_id>**: Retrieve all transactions for a specific user.
-    - Headers: `Authorization: Bearer your.jwt.token.here`
-    - Response: `[ { "id": 1, "transaction_type": { "id": 1, "name": "Income" }, "amount": 100.0, "at_date": "2023-10-10", "user_id": 1 }, ... ]`
-
-- **POST /transactions**: Create a new transaction.
-    - Headers: `Authorization: Bearer your.jwt.token.here`
-    - Request body: `{ "transaction_type": { "id": 1 }, "amount": 100.0, "user_id": 1 }`
-    - Response: `{ "id": 1, "transaction_type": { "id": 1, "name": "Income" }, "amount": 100.0, "at_date": "2023-10-10", "user_id": 1 }`
-
 ## License
 
 This project is licensed under the MIT License.
