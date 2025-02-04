@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 from sqlalchemy.orm import relationship
 
@@ -54,13 +54,17 @@ class User(db.Model):
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
 
     transactions = relationship('Transaction', back_populates='user')
     
     def __init__(self, username, password):
-        self.username = username
-        self.password = generate_password_hash(password)
+        self.username = username.strip()
+        self.password = generate_password_hash(password.strip(), method="scrypt")
+        
+    @staticmethod
+    def check_password(hashed_password, password):
+        return check_password_hash(hashed_password, password)
         
 class RevokedToken(db.Model):
     id = db.Column(db.Integer, primary_key=True)
