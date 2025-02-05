@@ -56,12 +56,12 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
 
-    transactions = relationship('Transaction', back_populates='user')
+    transactions = db.relationship('Transaction', back_populates='user')
     
     def __init__(self, username, password):
         self.username = username.strip()
-        self.password = generate_password_hash(password.strip(), method="scrypt")
-        
+        self.password = password.strip()
+
     @staticmethod
     def check_password(hashed_password, password):
         return check_password_hash(hashed_password, password)

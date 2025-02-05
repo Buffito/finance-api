@@ -16,10 +16,10 @@ class UserService:
         
         username = validated_data['username'].strip()
         password = validated_data['password'].strip()
-        
+            
         hashed_password = generate_password_hash(password, method="scrypt")
         new_user = User(username=username, password=hashed_password)
-        
+             
         try:
             db.session.add(new_user)
             db.session.commit()
