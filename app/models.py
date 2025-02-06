@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 from app import db
 from sqlalchemy.orm import relationship
 
@@ -43,6 +43,14 @@ class Transaction(db.Model):
         self.amount = amount
         self.at_date = at_date
         self.user_id = user_id
+        
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'amount': self.amount,
+            'date': self.date.strftime('%Y-%m-%d')
+        }
 
 @dataclass
 class User(db.Model):

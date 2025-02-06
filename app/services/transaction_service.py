@@ -5,12 +5,7 @@ from marshmallow import ValidationError
 from datetime import datetime
 from flask import jsonify
 
-class TransactionService:
-    @staticmethod
-    def get_all():
-        transactions = Transaction.query.all()
-        return TransactionSchema(many=True).dump(transactions)
-    
+class TransactionService:   
     @staticmethod
     def get_all_by_user_id(user_id):
         transactions = Transaction.query.filter_by(user_id=user_id).all()
@@ -48,3 +43,24 @@ class TransactionService:
             return jsonify({"error": str(e)}), 400
         
         return jsonify(TransactionSchema().dump(transaction)), 201
+    
+    @staticmethod
+    def get_all_by_user_id_between_dates(user_id, start_date, end_date):
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        transactions = Transaction.query.filter(
+            Transaction.user_id == user_id,
+            Transaction.date >= start_date,
+            Transaction.date <= end_date
+        ).all()
+        return [transaction.to_dict() for transaction in transactions]
+    
+    @staticmethod
+    def get_first_transaction_by_user_id(user_id):
+        transaction = Transaction.query.filter_by(user_id=user_id).first()
+        return TransactionSchema().dump(transaction)
+    
+    @staticmethod
+    def get_last_transaction_by_user_id(user_id):
+        transaction = Transaction.query.filter_by(user_id=user_id).order_by(Transaction.id.desc()).first()
+        return TransactionSchema().dump(transaction)

@@ -26,7 +26,7 @@ def create_app():
     app.register_blueprint(main)
     
     # For testing purposes
-    #from app.routes.test import test
+    #from tests.test import test 
     #app.register_blueprint(test)
     
     return app
