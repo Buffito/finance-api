@@ -9,16 +9,6 @@ This is a Flask-based API for managing transactions. The API supports user authe
 - Token revocation for secure logout
 - Data validation with Marshmallow schemas
 
-## Requirements
-
-- Python 3.7+
-- Flask
-- Flask-JWT-Extended
-- Flask-SQLAlchemy
-- Flask-Migrate
-- Marshmallow
-- python-dotenv
-
 ## Installation
 
 1. Clone the repository:
