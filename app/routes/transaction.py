@@ -16,7 +16,7 @@ def create_transaction():
     data = request.get_json()
     return TransactionService.create_transaction(data)
 
-@transaction.route('/transactions/user/<int:user_id>/between', methods=['POST'])
+@transaction.route('/transactions/user/<int:user_id>/between', methods=['GET'])
 @jwt_required()
 def get_transactions_by_user_id_between_dates(user_id):
     data = request.get_json()

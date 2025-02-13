@@ -8,9 +8,14 @@ from flask import jsonify
 class TransactionService:   
     @staticmethod
     def get_all_by_user_id(user_id):
-        transactions = Transaction.query.filter_by(user_id=user_id).all()
+        transactions = Transaction.query.filter_by(user_id=user_id).order_by(Transaction.at_date.desc()).all()
         return TransactionSchema(many=True).dump(transactions)
 
+    @staticmethod
+    def get_last15_by_user_id(user_id):
+        transactions = Transaction.query.filter_by(user_id=user_id).order_by(Transaction.at_date.desc()).limit(15).all()
+        return TransactionSchema(many=True).dump(transactions)
+    
     @staticmethod
     def create_transaction(data):
         schema = TransactionSchema()
