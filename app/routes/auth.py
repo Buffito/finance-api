@@ -1,8 +1,6 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, JWTManager
+from flask_jwt_extended import create_access_token, jwt_required, JWTManager, create_refresh_token, get_jwt_identity
 from app.models import User
-from datetime import timedelta
-
 auth = Blueprint('auth', __name__)
 
 jwt = JWTManager()
@@ -21,8 +19,14 @@ def login():
     user = User.query.filter_by(username=username).first()
     
     if user and User.check_password(user.password, password):
-        identity = str(user.id)+"_"+str(user.username)
-        access_token = create_access_token(identity=str(identity), expires_delta=timedelta(minutes=10))
-        return jsonify({"message": "Login successful", "access_token": access_token, "id": user.id}), 200
+        access_token = create_access_token(identity=str(user), fresh=True)
+        return jsonify({"access_token": access_token, "id": user.id}), 200
 
     return jsonify({"message": "Invalid credentials"}), 401
+
+@auth.route('/refresh', methods=['POST'])
+@jwt_required()
+def refresh():    
+    identity = get_jwt_identity()
+    access_token = create_access_token(identity=identity, fresh=False)
+    return jsonify(access_token=access_token)

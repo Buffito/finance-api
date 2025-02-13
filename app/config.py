@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
 
 load_dotenv()
 
@@ -10,3 +11,4 @@ class Config:
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY') or 'a random string'
     JWT_BLACKLIST_ENABLED = True
     JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=10)
