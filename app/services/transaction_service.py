@@ -19,6 +19,7 @@ class TransactionService:
     @staticmethod
     def create_transaction(data):
         schema = TransactionSchema()
+        print(data)
         try:
             validated_data = schema.load(data)
         except ValidationError as err:
@@ -36,7 +37,7 @@ class TransactionService:
         transaction = Transaction(
             type_id=transaction_type.id, 
             amount=validated_data['amount'],
-            at_date=validated_data.get('at_date', datetime.now()),
+            at_date=validated_data['at_date'], 
             user_id=user.id
         )
         

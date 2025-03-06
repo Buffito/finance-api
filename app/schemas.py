@@ -19,7 +19,7 @@ class TransactionSchema(Schema):
     id = fields.Int(dump_only=True)
     transaction_type = fields.Nested(TransactionTypeSchema, required=True)
     amount = fields.Float(required=True)
-    at_date = fields.DateTime(dump_only=True)
+    at_date = fields.Date(required=True)
     user_id = fields.Int(required=True)
 
     class Meta:
