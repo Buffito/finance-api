@@ -1,12 +1,12 @@
-# Flask Transaction API
+# Finance API
 
-This is a Flask-based API for managing transactions. The API supports user authentication using JWT tokens and provides endpoints for creating, retrieving, and managing transactions.
+This is an API developed in Python-Flask. It supports user authentication using JWT tokens and provides endpoints for creating, retrieving, and managing transactions. It's purpose was for me 
+to learn more about APIs and create something useful in the process.
 
 ## Features
 
 - User authentication with JWT tokens
 - CRUD operations for transactions
-- Token revocation for secure logout
 - Data validation with Marshmallow schemas
 
 ## Installation
@@ -14,8 +14,8 @@ This is a Flask-based API for managing transactions. The API supports user authe
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/Buffito/flask-transaction-api.git
-    cd flask-transaction-api
+    git clone https://github.com/Buffito/finance-api.git
+    cd finance-api
     ```
 
 2. Create and activate a virtual environment:
@@ -63,7 +63,7 @@ This is a Flask-based API for managing transactions. The API supports user authe
     flask run
     ```
 
-2. Use an API client like Postman to interact with the API.
+2. Use an API client like Postman to interact with the API, or open [http://localhost:5000/apidocs](http://localhost:5000/apidocs) in your browser to view and interact with the API documentation via
 
 ## License
 

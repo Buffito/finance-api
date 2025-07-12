@@ -1,11 +1,15 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, jwt_required, JWTManager, create_refresh_token, get_jwt_identity
+from flask_jwt_extended import create_access_token, jwt_required, JWTManager, get_jwt_identity
 from app.models import User
+from flasgger import swag_from
+from .swagger_specs import login_spec, refresh_spec
+
 auth = Blueprint('auth', __name__)
 
 jwt = JWTManager()
 
 @auth.route('/login', methods=['POST'])
+@swag_from(login_spec)
 def login():
     data = request.get_json()
     if 'username' not in data.keys():
@@ -26,6 +30,7 @@ def login():
 
 @auth.route('/refresh', methods=['POST'])
 @jwt_required()
+@swag_from(refresh_spec)
 def refresh():    
     identity = get_jwt_identity()
     access_token = create_access_token(identity=identity, fresh=False)
