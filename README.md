@@ -63,7 +63,7 @@ to learn more about APIs and create something useful in the process.
     flask run
     ```
 
-2. Use an API client like Postman to interact with the API, or open [http://localhost:5000/apidocs](http://localhost:5000/apidocs) in your browser to view and interact with the API documentation via
+2. Use an API client like Postman to interact with the API, or open [http://localhost:5000/apidocs](http://localhost:5000/apidocs) in your browser to view and interact with the API documentation via Swagger.
 
 ## License
 
